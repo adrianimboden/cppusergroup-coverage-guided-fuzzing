@@ -1,0 +1,11 @@
+*~
+.mypy_cache/
+*.aux
+*.log
+*.nav
+*.out
+*.pdf
+*.snm
+*.toc
+*.vrb
+_minted-presentation

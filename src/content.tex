@@ -1,0 +1,81 @@
+\section{Intro}
+
+\subsection{Ziel}
+\begin{frame}[fragile]
+	\frametitle{Ziel heute}
+
+	\begin{itemize}
+		\item Praxisbezogen
+		\item Selber ausprobieren
+	\end{itemize}
+	$\rightarrow$ Minimal theoretisch
+\end{frame}
+
+
+\subsection{Was ist Fuzzing}
+\begin{frame}[fragile]
+	\frametitle{Was ist Fuzzing?}
+
+	Eine Technik, meist automatisiert oder halbautomatisiert, welche:
+	\pause\
+	\begin{itemize}
+		\item ungültigen
+		\item unerwartete
+		\item oder zufällige Eingabe
+	\end{itemize}
+	in ein Programm gibt und dann prüft ob die Software:
+	\pause\
+	\begin{itemize}
+		\item Crasht
+		\item Asserted
+		\item Races beinhaltet
+		\item Leaks beinhaltet
+		\item \ldots
+	\end{itemize}
+\end{frame}
+
+\subsection{Anwendungsbeispiel}
+\begin{frame}[fragile]
+	\frametitle{Beispiel Heartbleed}
+	\includesvg[width=.7\textwidth]{pictures/Simplified_Heartbleed_explanation.svg}
+\end{frame}
+
+\section{Mein erster eigener Fuzzer}
+\subsection{Aufbau}
+\begin{frame}[fragile]
+	\frametitle{Aufbau}
+
+	my\_fuzzer.cpp:
+	\inputminted[fontsize=\scriptsize,linenos]{cpp}{snippets/first_fuzzer.cpp}
+	\vspace{5mm}
+
+	Build:
+	\begin{minted}[fontsize=\small]{bash}
+clang++-8 -g -fsanitize=fuzzer,address my_fuzzer.cpp
+  \end{minted}
+	\vspace{5mm}
+
+	Run:
+	\begin{minted}[fontsize=\small]{bash}
+./a.out
+  \end{minted}
+\end{frame}
+
+\subsection{Optimieren}
+\begin{frame}[fragile]
+	\frametitle{Optimieren}
+
+	\begin{itemize}
+		\item Möglichst kleine Programmteile testen
+		\item Möglichst kleine Programmteile testen
+	\end{itemize}
+\end{frame}
+
+\subsection{Tipps \& Tricks}
+\begin{frame}[fragile]
+	\frametitle{Tipps \& Tricks}
+
+	\begin{itemize}
+		\item Möglichst kleine Programmteile testen
+	\end{itemize}
+\end{frame}
