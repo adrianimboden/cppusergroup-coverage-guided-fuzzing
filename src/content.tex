@@ -5,10 +5,9 @@
 	\frametitle{Ziel heute}
 
 	\begin{itemize}
-		\item Praxisbezogen
-		\item Selber ausprobieren
+		\item Sehen, wie einfach man Fuzzer heutzutage einsetzen kann
+		\item Möglichst viel selber Hand anlegen
 	\end{itemize}
-	$\rightarrow$ Minimal theoretisch
 \end{frame}
 
 
@@ -19,63 +18,97 @@
 	Eine Technik, meist automatisiert oder halbautomatisiert, welche:
 	\pause\
 	\begin{itemize}
-		\item ungültigen
+		\item ungültige
 		\item unerwartete
-		\item oder zufällige Eingabe
+		\item oder zufällige
 	\end{itemize}
-	in ein Programm gibt und dann prüft ob die Software:
+	Eingabe in ein Programm gibt und dann prüft, ob die Software:
 	\pause\
 	\begin{itemize}
 		\item Crasht
-		\item Asserted
+		\item Assertions auslöst
 		\item Races beinhaltet
 		\item Leaks beinhaltet
 		\item \ldots
 	\end{itemize}
 \end{frame}
 
-\subsection{Anwendungsbeispiel}
+\subsection{Demo}
 \begin{frame}[fragile]
-	\frametitle{Beispiel Heartbleed}
+	\frametitle{Demo Heartbleed}
 	\includesvg[width=.7\textwidth]{pictures/Simplified_Heartbleed_explanation.svg}
 \end{frame}
 
-\section{Mein erster eigener Fuzzer}
-\subsection{Aufbau}
+\section{Hands On}
+\subsection{Mein erster eigener Fuzzer}
 \begin{frame}[fragile]
-	\frametitle{Aufbau}
+	\frametitle{Mein erster eigener Fuzzer}
 
 	my\_fuzzer.cpp:
 	\inputminted[fontsize=\scriptsize,linenos]{cpp}{snippets/first_fuzzer.cpp}
 	\vspace{5mm}
 
+	\pause\
 	Build:
 	\begin{minted}[fontsize=\small]{bash}
 clang++-8 -g -fsanitize=fuzzer,address my_fuzzer.cpp
   \end{minted}
 	\vspace{5mm}
 
+	\pause\
 	Run:
 	\begin{minted}[fontsize=\small]{bash}
 ./a.out
   \end{minted}
+
+	\pause\
+	$\rightarrow$ Hands On
 \end{frame}
 
-\subsection{Optimieren}
+\subsection{Beispielsanwendung}
 \begin{frame}[fragile]
-	\frametitle{Optimieren}
+	\frametitle{Beispielsanwendung}
 
-	\begin{itemize}
-		\item Möglichst kleine Programmteile testen
-		\item Möglichst kleine Programmteile testen
-	\end{itemize}
+	Suche nach Base64 Implementierung auf Google:
+	\pause\
+	\begin{quote}
+		I have made some modifications to this old post. This one works way faster than before. Its other advantage is smooth handling of corrupt data as well.
+	\end{quote}
+	\pause\
+	Perfekt für unsere Zwecke: Schnell und gutes Error Handling.\\
+	Dann lassen wir den Code doch mal durch den Fuzzer laufen:\\
+
+	\url{https://raw.githubusercontent.com/adrianimboden/cppusergroup-coverage-guided-fuzzing/master/base64_example.cpp}
+	\vspace{5mm}\\
+	$\rightarrow$ Hands On
+
 \end{frame}
 
-\subsection{Tipps \& Tricks}
+\section{Schlusswort}
 \begin{frame}[fragile]
-	\frametitle{Tipps \& Tricks}
+	\frametitle{Schlusswort}
 
+	Für das beste Fuzzing Ergebnis:
 	\begin{itemize}
-		\item Möglichst kleine Programmteile testen
+		\item Möglichst kleine Programmteile auf einmal
+		\item Möglichst schnelles Programm
+		\item In Kombination mit Sanitizers (ASan, MSan, UBSan, evtl. TSan)
 	\end{itemize}
+
+	Weitere Themen für Interessierte
+	\begin{itemize}
+		\item Corpus
+		\item Eigene/Andere Mutatoren
+	\end{itemize}
+	$\rightarrow$ \url{https://llvm.org/docs/LibFuzzer.html}
+\end{frame}
+
+
+\begin{frame}
+	\begin{figure}[ht]
+		\centering
+	\end{figure}
+	\Huge{\centerline{The End}}
+	\small{\centerline{Noch fragen?}}
+
 \end{frame}
